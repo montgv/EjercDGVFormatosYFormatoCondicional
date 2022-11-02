@@ -19,13 +19,21 @@ namespace EjercDGVFormatosYFormatoCondicional
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            introduccionDatos(6);
+            //Llamamos a la funcion para que nos introduzca los datos
+            introduccionDatos(3);
 
             estilos estilo = new estilos(this.dgv);
 
+            //Introducimos los diferentes estilos
             estilo.definirFilas("#A34896", "#AFF099", "#6BA358", "------------");
             estilo.definirCabecera("#CDFFBD", "#6BA358");
             estilo.definirFilasAlternas("#CDFFBD", "#F17EE1", "************");
+
+            //Ajustamos el tamaño de todas las columnas
+            foreach (DataGridViewColumn dgvColumna in this.dgv.Columns)
+            {
+                dgvColumna.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }
         }
 
         private void introduccionDatos(int numDatos)
@@ -42,10 +50,38 @@ namespace EjercDGVFormatosYFormatoCondicional
                 fila.Cells[4].Value = "Baeza";
                 fila.Cells[5].Value = "15/08/1989";
                 fila.Cells[6].Value = "A";
-                fila.Cells[7].Value = 900;
+                fila.Cells[7].Value = 900.20;
 
                 dgv.Rows.Add(fila);
             }
+
+            DataGridViewRow fila1 = new DataGridViewRow();
+            fila1.CreateCells(dgv);
+
+            fila1.Cells[0].Value = 4;
+            fila1.Cells[1].Value = "Pepa";
+            fila1.Cells[2].Value = "Garrido";
+            fila1.Cells[3].Value = "Valero";
+            fila1.Cells[4].Value = "Baeza";
+            fila1.Cells[5].Value = "15/08/1998";
+            fila1.Cells[6].Value = "B";
+            fila1.Cells[7].Value = 960.20;
+
+            dgv.Rows.Add(fila1);
+
+            DataGridViewRow fila2 = new DataGridViewRow();
+            fila2.CreateCells(dgv);
+
+            fila2.Cells[0].Value = 5;
+            fila2.Cells[1].Value = "Carlos";
+            fila2.Cells[2].Value = "Vargas";
+            fila2.Cells[3].Value = "Valero";
+            fila2.Cells[4].Value = "Baeza";
+            fila2.Cells[5].Value = "06/11/1988";
+            fila2.Cells[6].Value = "C";
+            fila2.Cells[7].Value = 1960.20;
+
+            dgv.Rows.Add(fila2);
 
             this.dgv.Columns[0].ValueType = Type.GetType("System.Integer");
             this.dgv.Columns[1].ValueType = Type.GetType("System.String");
@@ -57,49 +93,31 @@ namespace EjercDGVFormatosYFormatoCondicional
             this.dgv.Columns[7].ValueType = Type.GetType("System.Double");
         }
 
-        private void dgv_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (this.dgv.Columns[e.ColumnIndex].Name == "ColumnTipoCliente")
             {
-                foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
+                if (e.Value != null)
                 {
-                    celda.Style.BackColor = Color.Purple;
-                    celda.Style.ForeColor = Color.White;
-                    celda.Style.Font = new Font("Comic Sans MS", 12, FontStyle.Italic);
-                    celda.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-                    switch (celda.OwningColumn.Name)
+                    if (e.Value.ToString() == "A")
                     {
-                        case "columnSumaTotal":
-                            celda.Style.Format = "#,#00";
-                            break;
-                        case "columnFechaAlta":
-                            celda.Style.Format = "ddd-MMMM-yyyy";
-                            break;
+                        e.CellStyle.ForeColor = Color.FromArgb(163, 72, 150);
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
+                    }
+                    if (e.Value.ToString() == "B")
+                    {
+                        e.CellStyle.ForeColor = Color.FromArgb(107, 163, 88);
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
+                    }
+                    if (e.Value.ToString() == "C")
+                    {
+                        e.CellStyle.ForeColor = Color.FromArgb(241, 126, 225);
+                        e.CellStyle.BackColor = Color.White;
+                        e.CellStyle.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
                     }
                 }
-            }
-        }
-
-        private void dgv_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                if (e.RowIndex % 2 == 0)
-                {
-                    foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
-                    {
-                        celda.Style = this.dgv.DefaultCellStyle;
-                    }
-                } else
-                {
-                    foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
-                    {
-                        celda.Style = this.dgv.AlternatingRowsDefaultCellStyle;
-                    }
-                }
-
-                
             }
         }
     }

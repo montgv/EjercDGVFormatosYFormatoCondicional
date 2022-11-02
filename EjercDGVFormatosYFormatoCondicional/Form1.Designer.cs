@@ -52,15 +52,13 @@
             this.ColumnFechaAlta,
             this.ColumnTipoCliente,
             this.ColumnSumaTotal});
-            this.dgv.Location = new System.Drawing.Point(1, 21);
-            this.dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv.Location = new System.Drawing.Point(2, 32);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.Height = 28;
-            this.dgv.Size = new System.Drawing.Size(1286, 229);
+            this.dgv.Size = new System.Drawing.Size(1268, 352);
             this.dgv.TabIndex = 0;
-            this.dgv.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellMouseEnter);
-            this.dgv.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellMouseLeave);
+            this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
             // 
             // ColumnCodigo
             // 
@@ -120,11 +118,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 292);
+            this.ClientSize = new System.Drawing.Size(1284, 449);
             this.Controls.Add(this.dgv);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
