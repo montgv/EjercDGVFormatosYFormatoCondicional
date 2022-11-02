@@ -56,5 +56,51 @@ namespace EjercDGVFormatosYFormatoCondicional
             this.dgv.Columns[6].ValueType = Type.GetType("System.Char");
             this.dgv.Columns[7].ValueType = Type.GetType("System.Double");
         }
+
+        private void dgv_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
+                {
+                    celda.Style.BackColor = Color.Purple;
+                    celda.Style.ForeColor = Color.White;
+                    celda.Style.Font = new Font("Comic Sans MS", 12, FontStyle.Italic);
+                    celda.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                    switch (celda.OwningColumn.Name)
+                    {
+                        case "columnSumaTotal":
+                            celda.Style.Format = "#,#00";
+                            break;
+                        case "columnFechaAlta":
+                            celda.Style.Format = "ddd-MMMM-yyyy";
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void dgv_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.RowIndex % 2 == 0)
+                {
+                    foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
+                    {
+                        celda.Style = this.dgv.DefaultCellStyle;
+                    }
+                } else
+                {
+                    foreach (DataGridViewCell celda in this.dgv.Rows[e.RowIndex].Cells)
+                    {
+                        celda.Style = this.dgv.AlternatingRowsDefaultCellStyle;
+                    }
+                }
+
+                
+            }
+        }
     }
 }
