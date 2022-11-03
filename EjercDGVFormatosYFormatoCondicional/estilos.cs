@@ -17,6 +17,9 @@ namespace EjercDGVFormatosYFormatoCondicional
             this.formulario = dataGridView;
         }
 
+        /*
+         * En esta función estamos definiendo el estilo de todas las filas del datagridview
+         */
         public void definirFilas(String colorLetra, String colorFondo, String colorSeleccionado, String valorPorDefecto, int tamanioFuente = 11, String fuente = "Comic Sans MS")
         {
             ColorConverter converter = new ColorConverter();
@@ -34,6 +37,9 @@ namespace EjercDGVFormatosYFormatoCondicional
             formulario.DefaultCellStyle = estiloFila;
         }
 
+        /*
+         * En esta función estamos definiendo el estilo de la cabecera del datagridview
+         */
         public void definirCabecera(String colorLetra, String colorFondo, int tamanioFuente = 12, String fuente = "Comic Sans MS")
         {
             ColorConverter converter = new ColorConverter();
@@ -51,6 +57,9 @@ namespace EjercDGVFormatosYFormatoCondicional
             formulario.EnableHeadersVisualStyles = false;
         }
 
+        /*
+         * En esta función estamos definiendo el estilo de las filas alternas del datagridview
+         */
         public void definirFilasAlternas(String colorLetra, String colorFondo, String valorPorDefecto, int tamanioFuente = 11, String fuente = "Comic Sans MS")
         {
             ColorConverter converter = new ColorConverter();

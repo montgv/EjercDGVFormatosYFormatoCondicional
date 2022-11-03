@@ -36,6 +36,11 @@ namespace EjercDGVFormatosYFormatoCondicional
             }
         }
 
+
+        /*
+         * Esta función la hemos creado para que se nos genere de manera automática los datos
+         * para el datagridview
+         */
         private void introduccionDatos(int numDatos)
         {
             for (int i = 0; i < numDatos; i++)
@@ -83,6 +88,7 @@ namespace EjercDGVFormatosYFormatoCondicional
 
             dgv.Rows.Add(fila2);
 
+            //Le asignamos a los datos que sean de un valor específico
             this.dgv.Columns[0].ValueType = Type.GetType("System.Integer");
             this.dgv.Columns[1].ValueType = Type.GetType("System.String");
             this.dgv.Columns[2].ValueType = Type.GetType("System.String");
@@ -93,6 +99,10 @@ namespace EjercDGVFormatosYFormatoCondicional
             this.dgv.Columns[7].ValueType = Type.GetType("System.Double");
         }
 
+        /*
+         * Este método lo usamos para dar formato al contenido de la columna tipo cliente
+         * donde dependiendo del valor de la celda se le ha asignado diferente formato
+         */
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.dgv.Columns[e.ColumnIndex].Name == "ColumnTipoCliente")
